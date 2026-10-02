@@ -121,7 +121,7 @@ Assim, a ESE conecta o problema de pesquisa, o planejamento experimental, a impl
 
 ## Documentação do Projeto de Aplicação
 
-### Parte 1 — Documentação (`README.md`)
+### Parte 1 — Documentação (`../README.md`)
 
 O README deve permitir que uma pessoa compreenda o estudo e saiba como reproduzi-lo. Ele deve conter:
 

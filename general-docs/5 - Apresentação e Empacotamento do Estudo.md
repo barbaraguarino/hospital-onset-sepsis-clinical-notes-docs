@@ -146,7 +146,7 @@ Depois de cada saída importante, uma célula de texto interpreta o resultado. O
 
 > Descreva o que foi publicado para que outra pessoa possa refazer o estudo:
 >
-> - **Estrutura do repositório**, com a função de cada pasta (ex.: `notebooks/`, `src/`, `sql/`, `resultados/` só com resultados agregados, `requirements.txt`, `.gitignore`, `LICENSE`; documentos de trabalho em `docs/`: [A decidir])
+> - **Estrutura do repositório**, com a função de cada pasta (ex.: `notebooks/`, `src/`, `sql/`, `resultados/` só com resultados agregados, `requirements.txt`, `../.gitignore`, `LICENSE`; documentos de trabalho em `docs/`: [A decidir])
 > - **O que não está no pacote e por quê:** os dados (termo de uso do dataset) e as credenciais
 > - **Como obter os dados:** o caminho oficial de acesso e credenciamento
 > - **Como executar:** ordem dos passos, tempo aproximado e hardware usado
