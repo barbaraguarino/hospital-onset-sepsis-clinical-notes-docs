@@ -5,7 +5,7 @@
 **Como usar este documento:**
 
 - Uso interno: não vai para o artigo. É daqui que saem a síntese comparativa (ver Definição do Estudo), a comparação com a literatura (ver Análise e Interpretação do Estudo) e todo número atribuído a outro estudo.
-- Cada referência tem um ID fixo (L01, L02...). O ID liga a ficha à entrada completa no documento Referências; nos demais documentos, a citação continua sendo (AUTOR, ANO).
+- Cada referência tem um ID fixo (L01, L02...). O ID liga a ficha à entrada completa no documento Referências; nos demais documentos, a citação continua sendo (AUTOR, ANO), com et al. quando há vários autores.
 - Escreva os resumos **com suas palavras**. Trecho literal só entre aspas, com página (ou seção, quando o artigo não tiver páginas). Todo número tirado de um artigo vem com a página, tabela ou figura de onde saiu.
 - Só registre uma referência depois de confirmar na fonte primária que ela existe (autores, ano, periódico, DOI), principalmente se foi sugerida por outra IA.
 - A versão começa em **0.1** quando o documento ganha o primeiro conteúdo e sobe 0.1 a cada revisão fechada (fim de um chat de revisão, não a cada pequena edição). O documento vira **1.0** na entrega final (04/12/2026). A Data é a da última edição do documento.
@@ -80,7 +80,7 @@
     - Dataset: MIMIC-III v1.4 (p. 49487).
     - População: 5.592 pacientes adultos descritos como casos de sepse; controles não descritos (Tab. 2, p. 49488).
     - Definição do desfecho: Sepsis-3. A infecção suspeita segue SEYMOUR et al. (2016), e a disfunção é um aumento de pelo menos 2 pontos no SOFA, numa janela de 48 h antes a 24 h depois da suspeita (p. 49487; Fig. 1). Os rótulos são horários, por método de outro trabalho citado pelos autores (p. 49488).
-    - Dados de entrada: 47 variáveis, sendo 15 sinais vitais e parâmetros ventilatórios, 29 exames laboratoriais e 3 demográficas (Tab. 3, p. 49488), e as notas como antes.
+    - Dados de entrada: 47 variáveis estruturadas em intervalos de 1 h, sendo 15 sinais vitais e parâmetros ventilatórios, 29 exames laboratoriais e 3 demográficas (Tab. 3, p. 49488; p. 49488–49489), e notas da tabela NOTEEVENTS anteriores ao início da sepse, sem sumários de alta (p. 49488).
     - Modelo: *Time Series Transformer* com bloco convolucional (p. 49489–49490).
     - Métrica principal: AUROC de 0,95, com acurácia de 0,93 e especificidade de 0,91 (p. 49483; p. 49493).
     - Validação: divisão dos dados não relatada no texto.
