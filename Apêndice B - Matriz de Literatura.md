@@ -37,7 +37,26 @@
 ### L03 — CHEN et al., 2022
 
 - Verificação na fonte primária: 27/09/2026 — PDF do projeto + editor BMC (https://doi.org/10.1186/s12911-022-02090-3) + PubMed (https://pubmed.ncbi.nlm.nih.gov/36581881/)
-- Resumo e análise: **[A decidir]**
+- Resumo e análise:
+  - Dataset: MIMIC-III v1.4 para desenvolvimento; base privada do Hospital Ruijin (HDRJH) para validação externa e ajuste; 67 pacientes consecutivos da UTI do Ruijin em uso real, de fevereiro a junho de 2021 (p. 2).
+  - População: no MIMIC-III, 6.891 pacientes (1.057 positivos e 5.834 negativos); no HDRJH, 453 pacientes (144 positivos) (p. 2). Os controles são só pacientes sem sepse durante toda a internação na UTI (p. 8).
+  - Definição do desfecho: Sepsis-3, pela combinação de infecção suspeita e SOFA (p. 2).
+  - Dados de entrada: 78 variáveis estruturadas no MIMIC-III e 63 no HDRJH, agregadas por hora (p. 2). Sem texto.
+  - Modelo: foram testados SVM, MLP, XGBoost, LightGBM e LSTM. LightGBM e MLP foram selecionados, ajustados por aprendizado por transferência e combinados (p. 3).
+  - Métrica principal: AUROC (p. 3; Tab. 1, p. 4).
+  - Validação:
+      - interna no MIMIC-III: LightGBM com AUROC 0,98 a 4 h (Tab. 1, p. 4);
+      - externa no HDRJH sem ajuste: 0,82–0,86 (LightGBM) e 0,84–0,87 (MLP) (p. 4);
+      - no HDRJH após o aprendizado por transferência: 0,94 (p. 4);
+      - em uso real: 0,86–0,90 (p. 5; Tab. 3, p. 6).
+  - Marco temporal: UTI (p. 1, 3).
+  - Horizonte: 1 a 5 h antes do início (p. 1, 3).
+  - Representação do texto: não usa texto.
+  - Ganho do texto: não se aplica.
+  - Outros pontos citados na Definição:
+      - importância das variáveis pelo SHAP (p. 3–4; Fig. 2, p. 6);
+      - exemplos ilustrativos de predição de 4 pacientes (Fig. 3, p. 7);
+      - pacientes com sepse logo após a transferência para a UTI foram difíceis de prever (p. 8).
 
 ### L04 — COLLINS et al., 2024
 
@@ -54,26 +73,27 @@
 - Verificação na fonte primária: 27/09/2026 — PDF do projeto + editor Elsevier (https://doi.org/10.1016/j.chest.2024.01.028)
 - Resumo e análise: **[A decidir]**
 
-### L07 — HAQ; KHAN; WAHLA, 2026
+### L07 — HAQ et al., 2026
 
 - Verificação na fonte primária: 27/09/2026 — PDF do projeto + IEEE Xplore (https://ieeexplore.ieee.org/document/11424392/)
-- Resumo e análise: **[A decidir]**
+- Resumo e análise:
+    - Dataset: MIMIC-III v1.4 (p. 49487).
+    - População: 5.592 pacientes adultos descritos como casos de sepse; controles não descritos (Tab. 2, p. 49488).
+    - Definição do desfecho: Sepsis-3. A infecção suspeita segue SEYMOUR et al. (2016), e a disfunção é um aumento de pelo menos 2 pontos no SOFA, numa janela de 48 h antes a 24 h depois da suspeita (p. 49487; Fig. 1). Os rótulos são horários, por método de outro trabalho citado pelos autores (p. 49488).
+    - Dados de entrada: 47 variáveis, sendo 15 sinais vitais e parâmetros ventilatórios, 29 exames laboratoriais e 3 demográficas (Tab. 3, p. 49488), e as notas como antes.
+    - Modelo: *Time Series Transformer* com bloco convolucional (p. 49489–49490).
+    - Métrica principal: AUROC de 0,95, com acurácia de 0,93 e especificidade de 0,91 (p. 49483; p. 49493).
+    - Validação: divisão dos dados não relatada no texto.
+    - Marco temporal: UTI, com rótulo horário durante a internação na UTI (p. 49488).
+    - Horizonte: 4, 6 e 12 h antes do início (Fig. 6, p. 49493–49494).
+    - Representação do texto: cada nota é resumida pelo GPT-4.0 e o resumo é codificado pelo ClinicalBERT. A média dos embeddings por paciente é concatenada às variáveis de cada hora (p. 49489–49490; Alg. 1 e 3).
+    - Ganho do texto: não relatado. As comparações são só com escores clínicos e outros modelos (Fig. 5 e Tab. 4, p. 49493; Fig. 6, p. 49494).
+    - Outros pontos citados na Definição: os autores reconhecem que o resumo é tratado como contexto fixo do paciente na janela de predição, sem evolução temporal (p. 49494).
+
 ### L08 — JOHNSON et al., 2016
 
 - Verificação na fonte primária: 27/09/2026 — PDF do projeto + editor Nature (https://doi.org/10.1038/sdata.2016.35) + PubMed Central (https://pmc.ncbi.nlm.nih.gov/articles/PMC4878278/)
-- Resumo e análise: 
-  - Dataset: MIMIC-III v1.4 (p. 49487).
-  - População: pacientes de UTI. Critérios de inclusão e tamanho da coorte não encontrados no texto ⚠️; as características estão na Tab. 2 (p. 49488).
-  - Definição do desfecho: Sepsis-3. A infecção suspeita segue SEYMOUR et al. (2016), e a disfunção é um aumento de pelo menos 2 pontos no SOFA, numa janela de 48 h antes a 24 h depois da suspeita (p. 49487; Fig. 1). Os rótulos são horários, por método de outro trabalho citado pelos autores (p. 49488).
-  - Dados de entrada: sinais vitais, exames laboratoriais e dados demográficos em intervalos de 1 h, e notas da tabela NOTEEVENTS anteriores ao início da sepse, sem sumários de alta (p. 49488–49489).
-  - Modelo: *Time Series Transformer* com bloco convolucional (p. 49489–49490).
-  - Métrica principal: AUROC de 0,95, com acurácia de 0,93 e especificidade de 0,91 (p. 49483; p. 49493).
-  - Validação: divisão dos dados não relatada no texto.
-  - Marco temporal: UTI, com rótulo horário durante a internação na UTI (p. 49488).
-  - Horizonte: 4, 6 e 12 h antes do início (Fig. 6, p. 49493–49494).
-  - Representação do texto: cada nota é resumida pelo GPT-4.0 e o resumo é codificado pelo ClinicalBERT. A média dos embeddings por paciente é concatenada às variáveis de cada hora (p. 49489–49490; Alg. 1 e 3).
-  - Ganho do texto: não relatado ⚠️. As comparações são só com escores clínicos e outros modelos (Fig. 5 e Tab. 4, p. 49493; Fig. 6, p. 49494).
-  - Outros pontos citados na Definição: os autores reconhecem que o resumo é tratado como contexto fixo do paciente na janela de predição, sem evolução temporal (p. 49494).
+- Resumo e análise: **[A decidir]**
 
 ### L09 — MARKWART et al., 2020
 
@@ -85,7 +105,7 @@
 - Verificação na fonte primária: 27/09/2026 — PDF do projeto + PubMed (https://pubmed.ncbi.nlm.nih.gov/34124082/)
 - Resumo e análise: **[A decidir]**
 
-### L11 — PAGE; DONNELLY; WANG, 2015
+### L11 — PAGE et al., 2015
 
 - Verificação na fonte primária: 27/09/2026 — PDF do projeto (manuscrito do autor, PMC) + PubMed (https://pubmed.ncbi.nlm.nih.gov/26110490/) + editor Wolters Kluwer (https://doi.org/10.1097/CCM.0000000000001164)
 - Resumo e análise: **[A decidir]**
@@ -117,14 +137,17 @@
 
 - Verificação na fonte primária: 27/09/2026 — PDF do projeto (manuscrito do autor, PMC) + PubMed Central (https://pmc.ncbi.nlm.nih.gov/articles/PMC6697188/) + editor Wolters Kluwer (https://doi.org/10.1097/CCM.0000000000003817)
 - Resumo e análise: **[A decidir]**
+
 ### L14 — SEYMOUR et al., 2016
 
 - Verificação na fonte primária: 27/09/2026 — PDF do projeto (manuscrito do autor, PMC) + PubMed (https://pubmed.ncbi.nlm.nih.gov/26903335/)
 - Resumo e análise: **[A decidir]**
+
 ### L15 — SINGER et al., 2016
 
 - Verificação na fonte primária: 27/09/2026 — PDF do projeto (manuscrito do autor, PMC) + PubMed Central (https://pmc.ncbi.nlm.nih.gov/articles/PMC4968574/)
 - Resumo e análise: **[A decidir]**
+
 ### L16 — WANG et al., 2022
 
 - Verificação na fonte primária: 27/09/2026 — PDF do projeto + arXiv (https://arxiv.org/abs/2203.14469)
@@ -145,7 +168,7 @@
       - só notas: 0,790 a 0,831.
   - Outros pontos citados na Definição: estudos de caso com a atenção do ClinicalBERT sobre notas de dois pacientes e com os valores fisiológicos de dois pacientes classificados corretamente pelo modelo completo e incorretamente pelo modelo só com notas (Fig. 2–3; p. 11–13).
 
-### L17 — YAN; GUSTAD; NYTRØ, 2022
+### L17 — YAN et al., 2022
 
 - Verificação na fonte primária: 27/09/2026 — PDF do projeto + editor Oxford Academic (https://doi.org/10.1093/jamia/ocab236) + PubMed (https://pubmed.ncbi.nlm.nih.gov/34897469/)
 - Resumo e análise: **[A decidir]**
@@ -165,7 +188,7 @@
 - Verificação na fonte primária: 02/10/2026 — página oficial da editora Springer (https://doi.org/10.1007/978-3-642-29044-2): autores, editora, ano, DOI e ISBN impresso 978-3-642-29043-5. Sem PDF no projeto; conteúdo do livro não acessado.
 - Resumo e análise: **[A decidir]**
 
-### L24 — BASILI; CALDIERA; ROMBACH, 1994
+### L24 — BASILI et al., 1994
 
 - Verificação na fonte primária: 02/10/2026 — PDF dos autores na Universidade de Maryland (https://www.cs.umd.edu/~mvz/handouts/gqm.pdf), sem dados de publicação impressos; as páginas citadas são as desse PDF (1–10). Ano e obra (*Encyclopedia of Software Engineering*, Wiley, ed. J. J. Marciniak) vêm de fontes secundárias, incluindo a lista de referências de WOHLIN et al. (2012) na Springer, que cita a obra com outro título ("Goal Question Metrics paradigm", p. 528–532). Página da Wiley não conferida. Sem PDF no projeto.
 - Resumo e análise: **[A decidir]**
